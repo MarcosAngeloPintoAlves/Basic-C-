@@ -1,0 +1,39 @@
+using Npgsql;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Loja01
+{
+    public class CBanco
+    {
+        public static NpgsqlConnection conexao; 
+        public NpgsqlCommand comando; 
+        public NpgsqlDataReader dreader; 
+        public DataTable tabela; 
+
+        public CBanco()
+        {
+            try
+            {
+                if ((conexao == null) || (conexao.State != ConnectionState.Open))
+                {
+                    conexao = new NpgsqlConnection("Server=127.0.0.1;Port=5432;User Id=postgres;Password=MyDB;Database=MyDB");
+                    //opening the connection
+                    conexao.Open();
+                }
+                comando = new NpgsqlCommand(); 
+                comando.Connection = conexao; 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Fail: " + ex.Message);
+            }
+        }
+    }
+}
+-- This class is used to connect PostgreSQL with Winforms C# --
+-- It needs to be declared into other class where there are I/O --
