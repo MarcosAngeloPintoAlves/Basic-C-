@@ -21,6 +21,7 @@ namespace Loja01
             {
                 if ((conexao == null) || (conexao.State != ConnectionState.Open))
                 {
+                    //string connection
                     conexao = new NpgsqlConnection("Server=127.0.0.1;Port=5432;User Id=postgres;Password=MyDB;Database=MyDB");
                     //opening the connection
                     conexao.Open();
